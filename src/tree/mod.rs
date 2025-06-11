@@ -1,2 +1,2 @@
-pub mod avl;
-pub mod red_black;
+pub mod node;
+pub mod tree;
