@@ -27,6 +27,10 @@ impl Tree {
         Self::insert_node(&mut self.root, new_node)
     }
 
+    pub fn search(&self, key: u64) -> Option<&OrderedPair> {
+        Self::search_node(&self.root, key)
+    }
+
     fn insert_node(current: &mut Option<Box<Node>>, new_node: Node) -> bool {
         match current {
             None => {
@@ -44,4 +48,20 @@ impl Tree {
             }
         }
     }
+
+    fn search_node(current: &Option<Box<Node>>, key: u64) -> Option<&OrderedPair> {
+        match current {
+            Some(existing_node) => {
+                if key == existing_node.key {
+                    Some(&existing_node.pair)
+                } else if key < existing_node.key {
+                    Self::search_node(&existing_node.left, key)
+                } else {
+                    Self::search_node(&existing_node.right, key)
+                }
+            }
+            None => None
+        }
+    }
+
 }
