@@ -13,4 +13,8 @@ fn main() {
 
     m_tree.insert(OrderedPair::new(3, 9));
     println!("{:#?}", m_tree);
+
+    if let Some(p) = m_tree.search(87)  {
+        println!("{:#?}", p); // [!] Espera como saída o último par adicionado na árvore.
+    }
 }
