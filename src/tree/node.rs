@@ -14,11 +14,11 @@ pub struct Node {
 }
 
 impl Node {
-    pub fn new(_pair_: OrderedPair) -> Self {
-        let _key_ = gen_key(_pair_.first, _pair_.second);
+    pub fn new(ordered_pair: OrderedPair) -> Self {
+        let key = gen_key(&ordered_pair);
         Node {
-            key: _key_,
-            pair: _pair_,
+            key: key,
+            pair: ordered_pair,
             left: None,
             right: None,
         }
