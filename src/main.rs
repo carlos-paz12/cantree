@@ -1,8 +1,7 @@
-use cantree::tree::tree::Tree;
-use cantree::utils::pair::OrderedPair;
+use cantree::{tree::bst::BinarySearchTree, utils::pair::OrderedPair};
 
 fn main() {
-    let mut m_tree = Tree::new();
+    let mut m_tree = BinarySearchTree::new();
     println!("{:#?}\n", m_tree);
 
     m_tree.insert(OrderedPair::new(1, 2));
@@ -14,7 +13,7 @@ fn main() {
     m_tree.insert(OrderedPair::new(3, 9));
     println!("{:#?}", m_tree);
 
-    if let Some(p) = m_tree.search(87)  {
+    if let Some(p) = m_tree.search(87) {
         println!("{:#?}", p); // [!] Espera como saída o último par adicionado na árvore.
     }
 }

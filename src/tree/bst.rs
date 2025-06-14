@@ -2,17 +2,17 @@ use super::node::Node;
 use crate::utils::pair::OrderedPair;
 
 #[derive(Debug)]
-pub struct Tree {
+pub struct BinarySearchTree {
     pub root: Option<Box<Node>>,
 }
 
-impl Tree {
+impl BinarySearchTree {
     pub fn new() -> Self {
-        Tree { root: None }
+        BinarySearchTree { root: None }
     }
 
     pub fn with_root(other: Node) -> Self {
-        Tree {
+        BinarySearchTree {
             /* [!]
              * The parameter `other` is moved into the Box, which is then stored in the `root` field.
              * After this line, `other` no longer exists (it has been consumed), because Rust uses
@@ -60,8 +60,7 @@ impl Tree {
                     Self::search_node(&existing_node.right, key)
                 }
             }
-            None => None
+            None => None,
         }
     }
-
 }
