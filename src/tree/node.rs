@@ -1,8 +1,9 @@
 use crate::utils::cantor::gen_key;
 use crate::utils::pair::OrderedPair;
 
-#[derive(Debug)]
-pub struct Node {
+#[derive(Debug, Clone)]
+pub struct Node
+{
     pub key: u64,
     pub pair: OrderedPair,
     /* [!]
@@ -13,8 +14,10 @@ pub struct Node {
     pub right: Option<Box<Node>>,
 }
 
-impl Node {
-    pub fn new(ordered_pair: OrderedPair) -> Self {
+impl Node
+{
+    pub fn new(ordered_pair: OrderedPair) -> Self
+    {
         let key = gen_key(&ordered_pair);
         Node {
             key: key,
