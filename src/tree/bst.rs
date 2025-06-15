@@ -25,7 +25,7 @@ impl BinarySearchTree
         Self::search_node(&self.root, key)
     }
 
-    pub fn remove(&mut self, key: &u64) -> Option<Box<Node>>
+  pub fn remove(&mut self, key: u64) -> Option<Box<Node>>
     {
         Self::remove_node(&mut self.root, key)
     }
@@ -57,7 +57,8 @@ impl BinarySearchTree
         }
     }
 
-    fn search_node(current: &Option<Box<Node>>, key: u64) -> Option<&OrderedPair>
+  fn search_node(current: &Option<Box<Node>>, key: u64)
+  -> Option<&OrderedPair>
     {
         match current
         {
@@ -80,7 +81,7 @@ impl BinarySearchTree
         }
     }
 
-    fn remove_node(root: &mut Option<Box<Node>>, key: &u64) -> Option<Box<Node>>
+  fn remove_node(root: &mut Option<Box<Node>>, key: u64) -> Option<Box<Node>>
     {
         match root
         {
@@ -90,15 +91,16 @@ impl BinarySearchTree
             }
             Some(node) =>
             {
-                if key < &node.key
+        if key < node.key
                 {
                     return Self::remove_node(&mut node.left, key);
                 }
-                else if key > &node.key
+        else if key > node.key
                 {
                     return Self::remove_node(&mut node.right, key);
                 }
-                else {
+        else
+        {
                     match (node.left.take(), node.right.take())
                     {
                         (None, None) =>
@@ -111,19 +113,28 @@ impl BinarySearchTree
                             *root = Some(child);
                             return Some(node_to_remove);
                         }
-                        (Some(_left), Some(_right)) =>
+            (Some(left), Some(right)) =>
                         {
-                            // let mut successor = Some(_right).take().unwrap();
-                            // let mut lef = None;
-                            // while let Some(n) = Some(successor.left)  {
-                            //     lef = Some(n);
-                            //     successor = Some(successor.left);
-                            // }
-                            // let node_to_remove = root.take().unwrap();
-                            // let ss = lef.take().unwrap();
-                            // *root = Some(ss);
-                            // return Some(node_to_remove);
-                            return None;
+              let successor_key;
+              let successor_pair;
+              {
+                let mut successor = right.as_ref();
+                while let Some(ref left_child) = successor.left
+                {
+                  successor = left_child.as_ref();
+                }
+                successor_key = successor.key;
+                successor_pair = successor.pair.clone();
+              }
+
+              node.key = successor_key;
+              node.pair = successor_pair;
+              node.left = Some(left);
+              node.right = Some(right);
+
+              Self::remove_node(&mut node.right, successor_key);
+
+              return Some(node.clone());
                         }
                     }
                 }
