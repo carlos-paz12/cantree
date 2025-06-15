@@ -84,7 +84,10 @@ impl BinarySearchTree
     {
         match root
         {
-            None => None,
+            None =>
+            {
+                return None;
+            }
             Some(node) =>
             {
                 if key < &node.key
@@ -95,22 +98,33 @@ impl BinarySearchTree
                 {
                     return Self::remove_node(&mut node.right, key);
                 }
-
-                match (node.left.take(), node.right.take())
-                {
-                    (None, None) =>
+                else {
+                    match (node.left.take(), node.right.take())
                     {
-                        return root.take();
-                    }
-                    (Some(child), None) | (None, Some(child)) =>
-                    {
-                        let node_to_remove = root.take().unwrap();
-                        *root = Some(child);
-                        return Some(node_to_remove);
-                    }
-                    (Some(_left), Some(_right)) =>
-                    {
-                        return None;
+                        (None, None) =>
+                        {
+                            return root.take();
+                        }
+                        (Some(child), None) | (None, Some(child)) =>
+                        {
+                            let node_to_remove = root.take().unwrap();
+                            *root = Some(child);
+                            return Some(node_to_remove);
+                        }
+                        (Some(_left), Some(_right)) =>
+                        {
+                            // let mut successor = Some(_right).take().unwrap();
+                            // let mut lef = None;
+                            // while let Some(n) = Some(successor.left)  {
+                            //     lef = Some(n);
+                            //     successor = Some(successor.left);
+                            // }
+                            // let node_to_remove = root.take().unwrap();
+                            // let ss = lef.take().unwrap();
+                            // *root = Some(ss);
+                            // return Some(node_to_remove);
+                            return None;
+                        }
                     }
                 }
             }
