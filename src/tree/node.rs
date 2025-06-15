@@ -1,11 +1,13 @@
 //! ## node module
 //!
-//! This module defines the Node struct.
+//! This module defines the `Node` struct.
 //! Each node stores an OrderedPair, a unique key generated using the Cantor
 //! pairing function, and optional left and right child nodes.
 use crate::utils::cantor::gen_key;
 use crate::utils::pair::OrderedPair;
 
+/// Represents a node in a binary tree that holds an ordered pair and a unique
+/// key.
 #[derive(Debug, Clone)]
 pub struct Node
 {
@@ -26,7 +28,7 @@ impl Node
   /// using the Cantor pairing function to ensure uniqueness.
   ///
   /// ### Arguments
-  /// * ordered_pair - The ordered pair to be stored in the node.
+  /// * `ordered_pair` - The ordered pair to be stored in the node.
   ///
   /// ### Returns
   /// A new Node with a unique key and no children.

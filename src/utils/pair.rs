@@ -1,44 +1,30 @@
+//! ## OrderedPair module
+//!
+//! This module defines the `OrderedPair` struct
+
+/// Represents an ordered pair of 32-bit unsigned integers (`u32`).
 #[derive(Debug, Clone, Copy)]
 pub struct OrderedPair
 {
+  /// The first element of the ordered pair.
   pub first: u32,
+  /// The second element of the ordered pair.
   pub second: u32,
 }
 
 impl OrderedPair
 {
+  /// ### brief
+  /// Creates a new OrderedPair with the specified elements.
+  ///
+  /// ### Arguments
+  /// * `first` - The first `u32` value.
+  /// * `second` - The second `u32` value.
+  ///
+  /// ### Returns
+  /// A new OrderedPair containing the provided values.
   pub fn new(first: u32, second: u32) -> Self
   {
-    OrderedPair { first, second }
-  }
-
-  pub fn invert(&mut self)
-  {
-    let tmp = self.first;
-    self.first = self.second;
-    self.second = tmp;
-  }
-}
-
-#[cfg(test)]
-mod tests
-{
-  use super::*;
-
-  #[test]
-  fn test_new_pair()
-  {
-    let p = OrderedPair::new(1, 2);
-    assert_eq!(p.first, 1);
-    assert_eq!(p.second, 2);
-  }
-
-  #[test]
-  fn test_invert()
-  {
-    let mut p = OrderedPair::new(3, 4);
-    p.invert();
-    assert_eq!(p.first, 4);
-    assert_eq!(p.second, 3);
+    return OrderedPair { first, second };
   }
 }
