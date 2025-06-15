@@ -1,2 +1,9 @@
 brace_style = "AlwaysNextLine"
 control_brace_style = "AlwaysNextLine"
+hard_tabs = false
+tab_spaces = 2
+comment_width = 80
+wrap_comments = true
+format_code_in_doc_comments = true
+doc_comment_code_block_width = 80
+max_width = 80
