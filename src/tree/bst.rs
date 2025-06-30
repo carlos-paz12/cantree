@@ -1,35 +1,76 @@
+//! ## binary_search_tree module
+//!
+//! This module defines the `BinarySearchTree` struct and implements core
+//! operations such as insertion, search, removal, and string representation
+//! for debugging and visualization.
+
 use super::node::Node;
 use crate::utils::pair::OrderedPair;
 
+/// Represents a binary search tree where each node contains an ordered pair.
+/// Provides basic operations such as insertion, search, and removal.
 #[derive(Debug)]
 pub struct BinarySearchTree
 {
+  /// Root node of the binary search tree.
   pub root: Option<Box<Node>>,
 }
 
 impl BinarySearchTree
 {
+  /// ### Brief
+  /// Creates a new, empty binary search tree.
+  ///
+  /// ### Returns
+  /// A binary search tree with no nodes.
   pub fn new() -> Self
   {
     BinarySearchTree { root: None }
   }
 
+  /// ### Brief
+  /// Inserts a new ordered pair into the tree.
+  ///
+  /// ### Arguments
+  /// * `pair` - The ordered pair to be inserted.
+  ///
+  /// ### Returns
+  /// `true` if insertion was successful, `false` if a node with the same key
+  /// already exists.
   pub fn insert(&mut self, pair: OrderedPair) -> bool
   {
     let new_node = Node::new(pair);
     Self::insert_node(&mut self.root, new_node)
   }
 
+  /// ### Brief
+  /// Searches for an ordered pair by its key.
+  ///
+  /// ### Arguments
+  /// * `key` - The key to search for.
+  ///
+  /// ### Returns
+  /// `Some(&OrderedPair)` if found, otherwise `None`.
   pub fn search(&self, key: u64) -> Option<&OrderedPair>
   {
     Self::search_node(&self.root, key)
   }
 
+  /// ### Brief
+  /// Removes a node from the tree by its key.
+  ///
+  /// ### Arguments
+  /// * `key` - The key of the node to remove.
+  ///
+  /// ### Returns
+  /// The removed node if it existed, otherwise `None`.
   pub fn remove(&mut self, key: u64) -> Option<Box<Node>>
   {
     Self::remove_node(&mut self.root, key)
   }
 
+  /// ### Brief
+  /// Recursive helper function for inserting a node into the tree.
   fn insert_node(current: &mut Option<Box<Node>>, new_node: Node) -> bool
   {
     match current
@@ -57,6 +98,8 @@ impl BinarySearchTree
     }
   }
 
+  /// ### Brief
+  /// Recursive helper function for searching a node by key.
   fn search_node(current: &Option<Box<Node>>, key: u64)
   -> Option<&OrderedPair>
   {
@@ -81,6 +124,8 @@ impl BinarySearchTree
     }
   }
 
+  /// ### Brief
+  /// Recursive helper function for removing a node by key.
   fn remove_node(root: &mut Option<Box<Node>>, key: u64) -> Option<Box<Node>>
   {
     match root
@@ -115,6 +160,7 @@ impl BinarySearchTree
             }
             (Some(left), Some(right)) =>
             {
+              // Find the in-order successor (smallest in right subtree).
               let successor_key;
               let successor_pair;
               {
@@ -132,6 +178,7 @@ impl BinarySearchTree
               node.left = Some(left);
               node.right = Some(right);
 
+              // Remove the successor node from right subtree.
               Self::remove_node(&mut node.right, successor_key);
 
               return Some(node.clone());
@@ -142,6 +189,12 @@ impl BinarySearchTree
     }
   }
 
+  /// ### Brief
+  /// Generates a string representation of the binary search tree for
+  /// visualization.
+  ///
+  /// ### Returns
+  /// A formatted string showing the structure of the tree.
   pub fn to_string(&self) -> String
   {
     fn helper(
