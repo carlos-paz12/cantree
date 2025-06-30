@@ -8,11 +8,18 @@
 ## Introduction
 **cantree** is a simple binary search tree implementation in Rust that uniquely identifies each node using the Cantor pairing function. The tree stores `OrderedPair` values and supports standard operations like insertion, search, and removal.
 
+The project supports classic BST operations like:
+
+- Insertion
+- Search
+- Removal
+- Visual representation (ASCII tree with optional color)
+
 ## Authors
-This project was developed by José Carlos da Paz Silva (<carlos.paz.707@ufrn.edu.br>) as part of the *Estrutura de Dados Básicas II* course at UFRN.
+This project was developed by **José Carlos da Paz Silva** (<carlos.paz.707@ufrn.edu.br>) as part of the _Estrutura de Dados Básicas II_ course at **UFRN**.
 
 ## Directory structure
-The project is organized into two main modules:
+The source code is organized into logical modules for clarity and modularity:
 
 ```
 src/
@@ -25,10 +32,16 @@ src/
 ├── lib.rs         # Library entry point
 └── main.rs        # Executable for testing the tree
 ```
-## Compiling and Running
-To compile and run **Cantree**, you must have **Rust and Cargo installed**. You can install them by following the instructions at [https://rustup.rs](https://rustup.rs).
 
-Once installed, follow the steps below:
+## Compiling and Running
+To compile and run **cantree**, you must have **Rust** and **Cargo** installed.  
+If you haven't already, install them via [https://rustup.rs](https://rustup.rs):
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Once Rust is set up, follow the steps:
 
 1. Clone this repository:
 
@@ -53,7 +66,8 @@ cargo build
 ```bash
 cargo run
 ```
-The output of the run contains several test cases of the structure using the implemented functions.
+
+You should see a sequence of test cases executed in the terminal, showcasing insertions, deletions, and tree state visualizations.
 
 ---
 
