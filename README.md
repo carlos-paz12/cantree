@@ -6,10 +6,9 @@
 [![Maintenance](https://img.shields.io/badge/maintained-yes-blue)]()
 
 ## Introduction
-**cantree** is a simple binary search tree implementation in Rust that uniquely identifies each node using the Cantor pairing function. The tree stores `OrderedPair` values and supports standard operations like insertion, search, and removal.
+**cantree** is a simple binary search tree implementation in Rust that uniquely identifies each node using the Cantor pairing function. The tree stores `OrderedPair` values.
 
 The project supports classic BST operations like:
-
 - Insertion
 - Search
 - Removal
